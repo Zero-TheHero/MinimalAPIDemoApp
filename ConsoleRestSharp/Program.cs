@@ -7,9 +7,10 @@ var request = new RestRequest("Users", Method.Get)
 {
     RequestFormat = DataFormat.Json
 };
+
 var response = client.Execute(request);
 
-if (response.Content != null)
+if (response.IsSuccessful && (response.Content != null) )
 {
     var users = JsonConvert.DeserializeObject<List<UserModel>>(response.Content.ToString());
 
@@ -19,7 +20,6 @@ if (response.Content != null)
         Console.WriteLine("{0} {1} {2}", user.Id, user.FirstName, user.LastName);
     }
 }
-
 
 Console.ReadLine();
 
