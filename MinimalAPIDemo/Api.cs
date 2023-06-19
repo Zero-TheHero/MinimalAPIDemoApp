@@ -3,13 +3,13 @@
 public static class Api
 {
     public static void ConfigureApi(this WebApplication app)
-    {
-        // All of my API endpoint mapping
+    {   
         app.MapGet("/Users", GetUsers);
         app.MapGet("/Users/{id}", GetUser);
         app.MapPost("/Users", InsertUser);
         app.MapPut("/Users", UpdateUser);
         app.MapDelete("/Users", DeleteUser);
+        app.Logger.LogInformation("Configured Endpoints");
     }
 
     private static async Task<IResult> GetUsers(IUserData data)

@@ -10,12 +10,10 @@ builder.Services.AddSingleton<IUserData, UserData>();
 
 var app = builder.Build();
 
-app.Logger.LogInformation("Started");
 app.UseSwagger();
 app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
-app.Logger.LogInformation("Configure Endpoints");
 app.ConfigureApi();
 
 app.Run();
