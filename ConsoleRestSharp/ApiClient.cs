@@ -3,22 +3,23 @@ using Newtonsoft.Json;
 using RestSharp;
 
 namespace ConsoleRestSharp;
-public static class ApiClient 
+public class ApiClient 
 {
-    public static bool DeleteUser(int id)
-    {
-        throw new NotImplementedException();
-    }
+    
+    private readonly RestClient _client;
 
-    public static UserModel? GetUser(int id)
+    public ApiClient(string baseUri)
     {
-        var client = new RestClient("https://localhost:5001");
+        _client = new RestClient(baseUri);
+    }
+    public UserModel? GetUser(int id)
+    {
         var request = new RestRequest("Users/" + id, Method.Get)
         {
             RequestFormat = DataFormat.Json
         };
 
-        var response = client.Execute(request);
+        var response = _client.Execute(request);
         var user = new UserModel();
         if (response.IsSuccessful && (response.Content != null))
         {
@@ -27,15 +28,14 @@ public static class ApiClient
         return user;
     }
 
-    public static List<UserModel>? GetUsers()
+    public List<UserModel>? GetUsers()
     {
-        var client = new RestClient("https://localhost:5001");
         var request = new RestRequest("Users", Method.Get)
         {
             RequestFormat = DataFormat.Json
         };
 
-        var response = client.Execute(request);
+        var response = _client.Execute(request);
 
         var users = new List<UserModel>();
         if (response.IsSuccessful && (response.Content != null))
@@ -45,13 +45,17 @@ public static class ApiClient
         return users;
     }
 
-    public static bool InsertUser(UserModel user)
+    public bool InsertUser(UserModel user)
     {
         throw new NotImplementedException();
 
     }
 
-    public static bool UpdateUser(UserModel user)
+    public bool UpdateUser(UserModel user)
+    {
+        throw new NotImplementedException();
+    }
+    public bool DeleteUser(int id)
     {
         throw new NotImplementedException();
     }

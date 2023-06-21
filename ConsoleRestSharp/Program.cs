@@ -1,6 +1,8 @@
 ﻿using ConsoleRestSharp;
 
-var users = ApiClient.GetUsers();
+var appClent = new ApiClient("https://localhost:5001");
+
+var users = appClent.GetUsers();
 if (users != null)
 {
     Console.WriteLine("List: ");
@@ -10,7 +12,7 @@ if (users != null)
     }
 }
 
-var user = ApiClient.GetUser(3);
+var user = appClent.GetUser(3);
 if (user != null)
 {
     Console.WriteLine("Single: ");
