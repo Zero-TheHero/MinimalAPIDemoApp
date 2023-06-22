@@ -1,6 +1,7 @@
 ﻿using DataAccess.Models;
 using Newtonsoft.Json;
 using RestSharp;
+using System.Reflection.Metadata.Ecma335;
 
 namespace ConsoleRestSharp;
 public class ApiClient 
@@ -18,14 +19,13 @@ public class ApiClient
         {
             RequestFormat = DataFormat.Json
         };
-
         var response = _client.Execute(request);
-        var user = new UserModel();
         if (response.IsSuccessful && (response.Content != null))
         {
-            user = JsonConvert.DeserializeObject<UserModel>(response.Content.ToString());
+            var user = JsonConvert.DeserializeObject<UserModel>(response.Content.ToString());
+            return user;
          }
-        return user;
+        return null;
     }
 
     public List<UserModel>? GetUsers()
@@ -34,15 +34,13 @@ public class ApiClient
         {
             RequestFormat = DataFormat.Json
         };
-
         var response = _client.Execute(request);
-
-        var users = new List<UserModel>();
         if (response.IsSuccessful && (response.Content != null))
         {
-            users = JsonConvert.DeserializeObject<List<UserModel>>(response.Content.ToString());
+            var users = JsonConvert.DeserializeObject<List<UserModel>>(response.Content.ToString());
+            return users;
          }
-        return users;
+        return null;
     }
 
     public bool InsertUser(UserModel user)
