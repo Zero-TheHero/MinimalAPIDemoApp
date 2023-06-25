@@ -1,10 +1,8 @@
 ﻿namespace MinimalAPIDemo;
 
-public static class ApiTestData
+public static class ApiTest
 {
-    public static void ConfigureApiTestData(this WebApplication app)
-    {
-        List<UserModel> users = new()
+    private static readonly List<UserModel> _users = new()
         {
             new() {Id = 1, FirstName = "TimTest", LastName = "Corey"},
             new() {Id = 2, FirstName = "SueTest", LastName = "Storm"},
@@ -12,18 +10,34 @@ public static class ApiTestData
             new() {Id = 4, FirstName = "MaryTest", LastName = "Jones"}
 
         };
+    public static void ConfigureApiTestData(this WebApplication app)
+    {
+        var urlFragment = "/Api/Test";
 
-        var urlFragment = "/Api/TestData";
-        app.MapGet(urlFragment, () => 
-        { 
-            return Results.Ok(users);
-        });
+        app.MapGet(urlFragment, GetTestData);
+        //app.MapGet(urlFragment, () => 
+        //{ 
+        //    return Results.Ok(_users);
+        //});
         //app.MapGet(urlFragment + "{id}", GetUser);
         //app.MapPost(urlFragment, InsertUser);
         //app.MapPut(urlFragment, UpdateUser);
         //app.MapDelete(urlFragment, DeleteUser);
         app.Logger.LogInformation("Configure {urlFragment} Endpoints", urlFragment);
     }
+
+    private static List<UserModel> GetTestData()
+    {
+        try
+        {
+            return _users;
+        }
+        catch (Exception ex)
+        {
+            return (List<UserModel>)Results.Problem(ex.Message);
+        }
+    }
+
 
     //private static async Task<IResult> GetUsers(IUserData data)
     //{
