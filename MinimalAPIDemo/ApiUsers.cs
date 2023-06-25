@@ -3,13 +3,14 @@
 public static class ApiUsers
 {
     public static void ConfigureApiUsers(this WebApplication app)
-    {   
-        app.MapGet("/Users", GetUsers);
-        app.MapGet("/Users/{id}", GetUser);
-        app.MapPost("/Users", InsertUser);
-        app.MapPut("/Users", UpdateUser);
-        app.MapDelete("/Users", DeleteUser);
-        app.Logger.LogInformation("Configured Users Endpoints");
+    {
+        var urlFragment = "/Api/Users";
+        app.MapGet(urlFragment, GetUsers);
+        app.MapGet(urlFragment + "/{id}", GetUser);
+        app.MapPost(urlFragment, InsertUser);
+        app.MapPut(urlFragment, UpdateUser);
+        app.MapDelete(urlFragment, DeleteUser);
+        app.Logger.LogInformation("Configure {urlFragment} Endpoints", urlFragment);
     }
 
     private static async Task<IResult> GetUsers(IUserData data)
