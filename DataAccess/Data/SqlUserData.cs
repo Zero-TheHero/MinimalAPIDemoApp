@@ -3,11 +3,11 @@ using DataAccess.Models;
 
 namespace DataAccess.Data;
 
-public class UserData : IUserData
+public class SqlUserData : IUserData
 {
     private readonly ISqlDataAccess _db;
 
-    public UserData(ISqlDataAccess db) 
+    public SqlUserData(ISqlDataAccess db) 
     { 
         _db = db;
     }
