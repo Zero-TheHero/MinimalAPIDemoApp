@@ -15,55 +15,17 @@ public static class ApiTest
         var urlFragment = "/Api/Test";
 
         app.MapGet(urlFragment, GetTestData);
-        //app.MapGet(urlFragment, () => 
-        //{ 
-        //    return Results.Ok(_users);
-        //});
-        //app.MapGet(urlFragment + "{id}", GetUser);
+        app.MapGet(urlFragment + "{id}", GetTestDataById);
         //app.MapPost(urlFragment, InsertUser);
         //app.MapPut(urlFragment, UpdateUser);
         //app.MapDelete(urlFragment, DeleteUser);
         app.Logger.LogInformation("Configure {urlFragment} Endpoints", urlFragment);
     }
 
-    private static List<UserModel> GetTestData()
-    {
-        try
-        {
-            return _users;
-        }
-        catch (Exception ex)
-        {
-            return (List<UserModel>)Results.Problem(ex.Message);
-        }
-    }
+    private static List<UserModel> GetTestData() {  return _users; }
 
-
-    //private static async Task<IResult> GetUsers(IUserData data)
-    //{
-    //    try
-    //    {
-    //        return Results.Ok(await data.GetUsers());
-    //    }
-    //    catch (Exception ex)
-    //    {
-    //        return Results.Problem(ex.Message);
-    //    }
-    //}
-
-    //private static async Task<IResult> GetUser(int id, IUserData data)
-    //{
-    //    try
-    //    {
-    //        var results = await data.GetUser(id);
-    //        if (results == null) return Results.NotFound();
-    //        return Results.Ok(results);
-    //    }
-    //    catch (Exception ex)
-    //    {
-    //        return Results.Problem(ex.Message);
-    //    }
-    //}
+    private static UserModel GetTestDataById(int id) { return _users.Single(x => x.Id == id); }
+ 
 
     //private static async Task<IResult> InsertUser(UserModel user, IUserData data)
     //{
