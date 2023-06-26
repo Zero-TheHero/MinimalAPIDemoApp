@@ -22,9 +22,31 @@ public static class ApiTest
         app.Logger.LogInformation("Configure {urlFragment} Endpoints", urlFragment);
     }
 
-    private static List<UserModel> GetTestData() {  return _users; }
+    private static IResult GetTestData() 
+    {
+        try
+        {
+            return Results.Ok(_users);
+        }
+        catch (Exception ex)
+        {
 
-    private static UserModel GetTestDataById(int id) { return _users.Single(x => x.Id == id); }
+            return Results.Problem(ex.Message);
+        }     
+    }
+
+    private static IResult GetTestDataById(int id) 
+    {
+        try
+        {
+            return Results.Ok(_users.Single(x => x.Id == id));
+        }
+        catch (Exception ex)
+        {
+
+            return Results.Problem(ex.Message);
+        }     
+    }
  
 
     //private static async Task<IResult> InsertUser(UserModel user, IUserData data)
