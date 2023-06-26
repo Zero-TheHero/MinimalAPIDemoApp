@@ -1,16 +1,15 @@
 ﻿namespace MinimalAPIDemo;
 
-public static class ApiUsers
+public static class ApiUser
 {
-    public static void ConfigureApiUsers(this WebApplication app)
+    public static void ConfigureApiUser(this WebApplication app)
     {
-        var urlFragment = "/Api/Users";
-        app.MapGet(urlFragment, GetUsers);
-        app.MapGet(urlFragment + "/{id}", GetUser);
-        app.MapPost(urlFragment, InsertUser);
-        app.MapPut(urlFragment, UpdateUser);
-        app.MapDelete(urlFragment, DeleteUser);
-        app.Logger.LogInformation("Configure {urlFragment} Endpoints", urlFragment);
+        app.MapGet("/Api/GetUsers", GetUsers);
+        app.MapGet("/Api/GetUser/{id}", GetUser);
+        app.MapPost("/Api/InsertUser", InsertUser);
+        app.MapPut("/Api/UpdateUser", UpdateUser);
+        app.MapDelete("/Api/DeletUser/{id}", DeleteUser);
+        app.Logger.LogInformation("Configure ApiUser Endpoints");
     }
 
     private static async Task<IResult> GetUsers(IUserData data)

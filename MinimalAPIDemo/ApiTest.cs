@@ -3,26 +3,24 @@
 public static class ApiTest
 {
     private static readonly List<UserModel> _users = new()
-        {
-            new() {Id = 1, FirstName = "TimTest", LastName = "Corey"},
-            new() {Id = 2, FirstName = "SueTest", LastName = "Storm"},
-            new() {Id = 3, FirstName = "JohnTest", LastName = "Smith"},
-            new() {Id = 4, FirstName = "MaryTest", LastName = "Jones"}
-
-        };
-    public static void ConfigureApiTestData(this WebApplication app)
     {
-        var urlFragment = "/Api/Test";
+        new() {Id = 1, FirstName = "TimTest", LastName = "Corey"},
+        new() {Id = 2, FirstName = "SueTest", LastName = "Storm"},
+        new() {Id = 3, FirstName = "JohnTest", LastName = "Smith"},
+        new() {Id = 4, FirstName = "MaryTest", LastName = "Jones"}
+    };
 
-        app.MapGet(urlFragment, GetTestData);
-        app.MapGet(urlFragment + "/{id}", GetTestDataById);
-        app.MapPost(urlFragment, InsertTestData);
-        app.MapPut(urlFragment, UpdateTestData);
-        app.MapDelete(urlFragment + "/{id}", DeleteTestData);
-        app.Logger.LogInformation("Configure {urlFragment} Endpoints", urlFragment);
+    public static void ConfigureApiTest(this WebApplication app)
+    {
+        app.MapGet("/Api/GetTests" , GetTests);
+        app.MapGet("/Api/GetTest/{id}", GetTest);
+        app.MapPost("/Api/InsertTest", InsertTest);
+        app.MapPut("/Api/UpdateTest", UpdateTest);
+        app.MapDelete("/Api/DeleteTest/{id}", DeleteTest);
+        app.Logger.LogInformation("Configure ApiTest Endpoints");
     }
 
-    private static IResult GetTestData() 
+    private static IResult GetTests() 
     {
         try
         {
@@ -35,7 +33,7 @@ public static class ApiTest
         }     
     }
 
-    private static IResult GetTestDataById(int id) 
+    private static IResult GetTest(int id) 
     {
         try
         {
@@ -47,7 +45,7 @@ public static class ApiTest
         }     
     }
  
-    private static IResult InsertTestData(UserModel model)
+    private static IResult InsertTest(UserModel model)
     {
         try
         {
@@ -60,7 +58,7 @@ public static class ApiTest
         }
     }
    
-    private static IResult UpdateTestData(UserModel model) 
+    private static IResult UpdateTest(UserModel model) 
     {
         try
         {
@@ -79,7 +77,7 @@ public static class ApiTest
         }
     }
    
-    private static IResult DeleteTestData(int id)
+    private static IResult DeleteTest(int id)
     {
         try
         {
