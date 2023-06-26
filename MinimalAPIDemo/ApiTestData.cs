@@ -15,10 +15,10 @@ public static class ApiTest
         var urlFragment = "/Api/Test";
 
         app.MapGet(urlFragment, GetTestData);
-        app.MapGet(urlFragment + "{id}", GetTestDataById);
+        app.MapGet(urlFragment + "/{id}", GetTestDataById);
         app.MapPost(urlFragment, InsertTestData);
         app.MapPut(urlFragment, UpdateTestData);
-        app.MapDelete(urlFragment, DeleteTestData);
+        app.MapDelete(urlFragment + "/{id}", DeleteTestData);
         app.Logger.LogInformation("Configure {urlFragment} Endpoints", urlFragment);
     }
 

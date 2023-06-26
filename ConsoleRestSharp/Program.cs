@@ -1,22 +1,63 @@
 ﻿using ConsoleRestSharp;
 
-var appClent = new ApiClient("https://localhost:5001");
+var appClient = new ApiClient("https://localhost:5001");
 
-var users = appClent.GetUsers();
+var users = appClient.GetUsers();
 if (users != null)
 {
-    Console.WriteLine("List: ");
+    Console.WriteLine("GetUsers");
     foreach (var u in users)
     {
         Console.WriteLine("{0} {1} {2}", u.Id, u.FirstName, u.LastName);
     }
 }
 
-var user = appClent.GetUser(3);
+var user = appClient.GetUser(3);
 if (user != null)
 {
-    Console.WriteLine("Single: ");
-    Console.WriteLine("{0} {1} {2}", user.Id, user.FirstName, user.LastName);
+    Console.WriteLine("GetUser {0} {1} {2}", user.Id, user.FirstName, user.LastName);
+    var deleted = appClient.DeleteUser(3);
+    if (deleted)
+    {
+        Console.WriteLine("DeleteUser {0} {1} {2}", user.Id, user.FirstName, user.LastName);
+    }
+}
+users = appClient.GetUsers();
+if (users != null)
+{
+    Console.WriteLine("New List: ");
+    foreach (var u in users)
+    {
+        Console.WriteLine("{0} {1} {2}", u.Id, u.FirstName, u.LastName);
+    }
+}
+
+var inserted = appClient.InsertUser(new DataAccess.Models.UserModel { Id = 3, FirstName = "Peter", LastName = "Cassinelli" });
+if (inserted)
+{
+    users = appClient.GetUsers();
+    if (users != null)
+    {
+        Console.WriteLine("After Insert: ");
+        foreach (var u in users)
+        {
+            Console.WriteLine("{0} {1} {2}", u.Id, u.FirstName, u.LastName);
+        }
+    }
+}
+
+var updated = appClient.UpdateUser(new DataAccess.Models.UserModel { Id = 3, FirstName = "John", LastName = "Smith" });
+if (updated)
+{
+    users = appClient.GetUsers();
+    if (users != null)
+    {
+        Console.WriteLine("After Update: ");
+        foreach (var u in users)
+        {
+            Console.WriteLine("{0} {1} {2}", u.Id, u.FirstName, u.LastName);
+        }
+    }
 }
 Console.ReadLine();
 

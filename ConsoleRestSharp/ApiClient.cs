@@ -3,9 +3,9 @@ using Newtonsoft.Json;
 using RestSharp;
 
 namespace ConsoleRestSharp;
-public class ApiClient 
+public class ApiClient
 {
-    
+
     private readonly RestClient _client;
 
     public ApiClient(string baseUri)
@@ -14,7 +14,7 @@ public class ApiClient
     }
     public UserModel? GetUser(int id)
     {
-        var request = new RestRequest("Users/" + id, Method.Get)
+        var request = new RestRequest($"Api/Test/{id}" , Method.Get)
         {
             RequestFormat = DataFormat.Json
         };
@@ -23,13 +23,13 @@ public class ApiClient
         {
             var user = JsonConvert.DeserializeObject<UserModel>(response.Content.ToString());
             return user;
-         }
+        }
         return null;
     }
 
     public List<UserModel>? GetUsers()
     {
-        var request = new RestRequest("Users", Method.Get)
+        var request = new RestRequest("Api/Test", Method.Get)
         {
             RequestFormat = DataFormat.Json
         };
@@ -38,22 +38,52 @@ public class ApiClient
         {
             var users = JsonConvert.DeserializeObject<List<UserModel>>(response.Content.ToString());
             return users;
-         }
+        }
         return null;
     }
 
     public bool InsertUser(UserModel user)
     {
-        throw new NotImplementedException();
+        var json = JsonConvert.SerializeObject(user);
 
+        var request = new RestRequest("Api/Test" , Method.Post)
+        {
+            RequestFormat = DataFormat.Json
+        };
+        request.AddBody(json);
+        var response = _client.Execute(request);
+        if (response.IsSuccessful)
+        {
+            return true;
+        }
+        return false;
     }
 
     public bool UpdateUser(UserModel user)
     {
-        throw new NotImplementedException();
+        var json = JsonConvert.SerializeObject(user);
+
+        var request = new RestRequest("Api/Test", Method.Put)
+        {
+            RequestFormat = DataFormat.Json
+        };
+        request.AddBody(json);
+        var response = _client.Execute(request);
+        if (response.IsSuccessful)
+        {
+            return true;
+        }
+        return false;
     }
+
     public bool DeleteUser(int id)
     {
-        throw new NotImplementedException();
+        var request = new RestRequest($"Api/Test/{id}", Method.Delete);
+        var response = _client.Execute(request);
+        if (response.IsSuccessful)
+        {
+            return true;
+        }
+        return false;
     }
 }
