@@ -16,9 +16,9 @@ public static class ApiTest
 
         app.MapGet(urlFragment, GetTestData);
         app.MapGet(urlFragment + "{id}", GetTestDataById);
-        //app.MapPost(urlFragment, InsertUser);
-        //app.MapPut(urlFragment, UpdateUser);
-        //app.MapDelete(urlFragment, DeleteUser);
+        app.MapPost(urlFragment, InsertTestData);
+        app.MapPut(urlFragment, UpdateTestData);
+        app.MapDelete(urlFragment, DeleteTestData);
         app.Logger.LogInformation("Configure {urlFragment} Endpoints", urlFragment);
     }
 
@@ -43,48 +43,53 @@ public static class ApiTest
         }
         catch (Exception ex)
         {
-
             return Results.Problem(ex.Message);
         }     
     }
  
+    private static IResult InsertTestData(UserModel model)
+    {
+        try
+        {
+            _users.Add(model);
+            return Results.Ok();
+        }
+        catch (Exception ex)
+        {
+            return Results.Problem(ex.Message);
+        }
+    }
+   
+    private static IResult UpdateTestData(UserModel model) 
+    {
+        try
+        {
+            var user = _users.Find(x => x.Id == model.Id);
+            if (user != null) 
+            {
+                user.FirstName = model.FirstName;
+                user.LastName = model.LastName;
+                return Results.Ok();
+            }
+            return Results.NotFound();
+        }
+        catch (Exception ex)
+        {
+            return Results.Problem(ex.Message);
+        }
+    }
+   
+    private static IResult DeleteTestData(int id)
+    {
+        try
+        {
+            _users.Remove(_users.Single(x => x.Id == id));
+            return Results.Ok();
+        }
+        catch (Exception ex)
+        {
+            return Results.Problem(ex.Message);
+        }
+    }
 
-    //private static async Task<IResult> InsertUser(UserModel user, IUserData data)
-    //{
-    //    try
-    //    {
-    //        await data.InsertUser(user);
-    //        return Results.Ok();
-    //    }
-    //    catch (Exception ex)
-    //    {
-    //        return Results.Problem(ex.Message);
-    //    }
-    //}
-
-    //private static async Task<IResult> UpdateUser(UserModel user, IUserData data)
-    //{
-    //    try
-    //    {
-    //        await data.UpdateUser(user);
-    //        return Results.Ok();
-    //    }
-    //    catch (Exception ex)
-    //    {
-    //        return Results.Problem(ex.Message);
-    //    }
-    //}
-
-    //private static async Task<IResult> DeleteUser(int id, IUserData data)
-    //{
-    //    try
-    //    {
-    //        await data.DeleteUser(id);
-    //        return Results.Ok();
-    //    }
-    //    catch (Exception ex)
-    //    {
-    //        return Results.Problem(ex.Message);
-    //    }
-    //}
 }

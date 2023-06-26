@@ -1,7 +1,6 @@
 ﻿using DataAccess.Models;
 using Newtonsoft.Json;
 using RestSharp;
-using System.Reflection.Metadata.Ecma335;
 
 namespace ConsoleRestSharp;
 public class ApiClient 
