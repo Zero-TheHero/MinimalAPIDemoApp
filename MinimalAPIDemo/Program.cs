@@ -19,3 +19,5 @@ app.ConfigureApiUser();
 app.ConfigureApiTest();
 
 app.Run();
+
+public partial class Program { }
