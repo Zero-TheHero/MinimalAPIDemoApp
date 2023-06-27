@@ -1,12 +1,12 @@
 using Microsoft.AspNetCore.Mvc.Testing;
 using System.Net;
 
-namespace MinimalApiTest;
+namespace MinimalApiDemo.Test;
 
-public class UnitTest1
+public class MinimalApiTests
 {
     [Fact]
-    public async void Test1()
+    public async void IsApiWorking()
     {
         await using var application = new WebApplicationFactory<Program>();
         using var client = application.CreateClient();
