@@ -18,8 +18,6 @@ public class MinimalApiClassFixtureTests : IClassFixture<WebApplicationFactory<P
     [Fact]
     public async void GetTests()
     {
-        //await using var application = new WebApplicationFactory<Program>();
-        //using var client = application.CreateClient();
         _response = await _client.GetAsync("/Api/GetTests");
         //var data = await response.Content.ReadAsStringAsync();
         Assert.Equal(HttpStatusCode.OK, _response.StatusCode);
