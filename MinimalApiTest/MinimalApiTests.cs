@@ -53,7 +53,7 @@ public class MinimalApiTests : IDisposable
     [Fact]
     public async void InserTest()
     {
-        var content = new StringContent(JsonConvert.SerializeObject(new { id = 5, firstname = "Peter", LastName = "Cassinelli" }));
+        var content = new StringContent(JsonConvert.SerializeObject(new { id = 5, firstname = "Peter", LastName = "Wong" }));
         content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
         var response = await _client.PostAsync("/Api/InsertTest", content);
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
@@ -62,7 +62,7 @@ public class MinimalApiTests : IDisposable
     [Fact]
     public async void Updatetest()
     {
-        var content = new StringContent(JsonConvert.SerializeObject(new { id = 1, firstname = "Lisa", LastName = "Cassinelli" }));
+        var content = new StringContent(JsonConvert.SerializeObject(new { id = 1, firstname = "Lisa", LastName = "Wong" }));
         content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
         var response = await _client.PutAsync("/Api/UpdateTest", content);
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);

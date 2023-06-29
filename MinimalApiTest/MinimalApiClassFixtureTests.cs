@@ -40,7 +40,7 @@ public class MinimalApiClassFixtureTests : IClassFixture<WebApplicationFactory<P
     [Fact]
     public async void InserTest()
     {
-        var content = new StringContent(JsonConvert.SerializeObject(new { id = 5, firstname = "Peter", LastName = "Cassinelli" }));
+        var content = new StringContent(JsonConvert.SerializeObject(new { id = 5, firstname = "Peter", LastName = "Wong" }));
         content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
         _response = await _client.PostAsync("/Api/InsertTest", content);
         Assert.Equal(HttpStatusCode.OK, _response.StatusCode);
@@ -49,7 +49,7 @@ public class MinimalApiClassFixtureTests : IClassFixture<WebApplicationFactory<P
     [Fact]
     public async void Updatetest()
     {
-        var content = new StringContent(JsonConvert.SerializeObject(new { id = 1, firstname = "Lisa", LastName = "Cassinelli" }));
+        var content = new StringContent(JsonConvert.SerializeObject(new { id = 1, firstname = "Lisa", LastName = "Wong" }));
         content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
         _response = await _client.PutAsync("/Api/UpdateTest", content);
         Assert.Equal(HttpStatusCode.OK, _response.StatusCode);

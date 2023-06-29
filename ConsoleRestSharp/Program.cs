@@ -32,7 +32,7 @@ if (users != null)
     }
 }
 
-var inserted = appClient.InsertUser(new DataAccess.Models.UserModel { Id = 3, FirstName = "Peter", LastName = "Cassinelli" });
+var inserted = appClient.InsertUser(new DataAccess.Models.UserModel { Id = 3, FirstName = "Peter", LastName = "Wong" });
 if (inserted)
 {
     users = appClient.GetUsers();
