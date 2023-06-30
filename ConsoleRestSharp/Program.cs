@@ -1,4 +1,5 @@
 ﻿using MinimalAPIRestClient;
+using DataAccess.Models;
 
 var appClient = new ApiClient("https://localhost:5001");
 
@@ -32,7 +33,7 @@ if (users != null)
     }
 }
 
-var inserted = appClient.InsertUser(new DataAccess.Models.UserModel { Id = 3, FirstName = "Peter", LastName = "Wong" });
+var inserted = appClient.InsertUser(new UserModel { Id = 3, FirstName = "Peter", LastName = "Wong" });
 if (inserted)
 {
     users = appClient.GetUsers();
@@ -46,7 +47,7 @@ if (inserted)
     }
 }
 
-var updated = appClient.UpdateUser(new DataAccess.Models.UserModel { Id = 3, FirstName = "John", LastName = "Smith" });
+var updated = appClient.UpdateUser(new UserModel { Id = 3, FirstName = "John", LastName = "Smith" });
 if (updated)
 {
     users = appClient.GetUsers();
