@@ -14,7 +14,7 @@ public class ApiClient
     }
     public UserModel? GetUser(int id)
     {
-        var request = new RestRequest($"Api/Test/{id}" , Method.Get)
+        var request = new RestRequest($"Api/GetTest/{id}" , Method.Get)
         {
             RequestFormat = DataFormat.Json
         };
@@ -29,7 +29,7 @@ public class ApiClient
 
     public List<UserModel>? GetUsers()
     {
-        var request = new RestRequest("Api/Test", Method.Get)
+        var request = new RestRequest("Api/GetTests", Method.Get)
         {
             RequestFormat = DataFormat.Json
         };
@@ -46,7 +46,7 @@ public class ApiClient
     {
         var json = JsonConvert.SerializeObject(user);
 
-        var request = new RestRequest("Api/Test" , Method.Post)
+        var request = new RestRequest("Api/InsertTest" , Method.Post)
         {
             RequestFormat = DataFormat.Json
         };
@@ -63,7 +63,7 @@ public class ApiClient
     {
         var json = JsonConvert.SerializeObject(user);
 
-        var request = new RestRequest("Api/Test", Method.Put)
+        var request = new RestRequest("Api/UpdateTest", Method.Put)
         {
             RequestFormat = DataFormat.Json
         };
@@ -78,7 +78,7 @@ public class ApiClient
 
     public bool DeleteUser(int id)
     {
-        var request = new RestRequest($"Api/Test/{id}", Method.Delete);
+        var request = new RestRequest($"Api/DeleteTest/{id}", Method.Delete);
         var response = _client.Execute(request);
         if (response.IsSuccessful)
         {
