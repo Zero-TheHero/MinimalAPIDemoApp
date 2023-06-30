@@ -1,4 +1,4 @@
-﻿using ConsoleRestSharp;
+﻿using MinimalAPIRestClient;
 
 var appClient = new ApiClient("https://localhost:5001");
 

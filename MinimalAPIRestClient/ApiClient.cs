@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using RestSharp;
 
-namespace ConsoleRestSharp;
+namespace MinimalAPIRestClient;
 public class ApiClient
 {
 

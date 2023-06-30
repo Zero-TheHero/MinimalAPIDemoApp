@@ -18,6 +18,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleRestSharp", "Console
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinimalApiDemo.Test", "MinimalApiTest\MinimalApiDemo.Test.csproj", "{D25305EA-907A-4FA2-A389-D1BF2E4197C9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MinimalAPIRestClient", "MinimalAPIRestClient\MinimalAPIRestClient.csproj", "{26373F68-11BB-441C-8548-AB2045327ECC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,6 +48,10 @@ Global
 		{D25305EA-907A-4FA2-A389-D1BF2E4197C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D25305EA-907A-4FA2-A389-D1BF2E4197C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D25305EA-907A-4FA2-A389-D1BF2E4197C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26373F68-11BB-441C-8548-AB2045327ECC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26373F68-11BB-441C-8548-AB2045327ECC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26373F68-11BB-441C-8548-AB2045327ECC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26373F68-11BB-441C-8548-AB2045327ECC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
