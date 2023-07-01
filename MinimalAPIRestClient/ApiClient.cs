@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using RestSharp;
 
 namespace MinimalAPIRestClient;
-public class ApiClient
+public class ApiClient : IApiClient
 {
 
     private readonly RestClient _client;
@@ -14,7 +14,7 @@ public class ApiClient
     }
     public UserModel? GetUser(int id)
     {
-        var request = new RestRequest($"Api/GetTest/{id}" , Method.Get)
+        var request = new RestRequest($"Api/GetTest/{id}", Method.Get)
         {
             RequestFormat = DataFormat.Json
         };
@@ -46,7 +46,7 @@ public class ApiClient
     {
         var json = JsonConvert.SerializeObject(user);
 
-        var request = new RestRequest("Api/InsertTest" , Method.Post)
+        var request = new RestRequest("Api/InsertTest", Method.Post)
         {
             RequestFormat = DataFormat.Json
         };
