@@ -2,15 +2,7 @@
 
 public static class ApiTest
 {
-    private static readonly List<UserModel> _users = new()
-    {
-        new() {Id = 1, FirstName = "TimTest", LastName = "Corey"},
-        new() {Id = 2, FirstName = "SueTest", LastName = "Storm"},
-        new() {Id = 3, FirstName = "JohnTest", LastName = "Smith"},
-        new() {Id = 4, FirstName = "MaryTest", LastName = "Jones"}
-    };
-
-    public static void ConfigureApiTest(this WebApplication app)
+     public static void ConfigureApiTest(this WebApplication app)
     {
         app.MapGet("/Api/GetTests" , GetTests);
         app.MapGet("/Api/GetTest/{id}", GetTest);
@@ -20,68 +12,37 @@ public static class ApiTest
         app.Logger.LogInformation("Configure ApiTest Endpoints");
     }
 
-    private static IResult GetTests() 
+    private static async Task<IResult> GetTests(IUserData data)
     {
         try
         {
-            return Results.Ok(_users);
+            return Results.Ok(await data.GetUsers());
         }
         catch (Exception ex)
         {
+            return Results.Problem(ex.Message);
+        }
+    }
 
+    private static async Task<IResult> GetTest(int id, IUserData data)
+    {
+        try
+        {
+            var results = await data.GetUser(id);
+            if (results == null) return Results.NotFound();
+            return Results.Ok(results);
+        }
+        catch (Exception ex)
+        {
             return Results.Problem(ex.Message);
-        }     
+        }
     }
 
-    private static IResult GetTest(int id) 
+    private static async Task<IResult> InsertTest(UserModel user, IUserData data)
     {
         try
         {
-            return Results.Ok(_users.Single(x => x.Id == id));
-        }
-        catch (Exception ex)
-        {
-            return Results.Problem(ex.Message);
-        }     
-    }
- 
-    private static IResult InsertTest(UserModel model)
-    {
-        try
-        {
-            _users.Add(model);
-            return Results.Ok();
-        }
-        catch (Exception ex)
-        {
-            return Results.Problem(ex.Message);
-        }
-    }
-   
-    private static IResult UpdateTest(UserModel model) 
-    {
-        try
-        {
-            var user = _users.Find(x => x.Id == model.Id);
-            if (user != null) 
-            {
-                user.FirstName = model.FirstName;
-                user.LastName = model.LastName;
-                return Results.Ok();
-            }
-            return Results.NotFound();
-        }
-        catch (Exception ex)
-        {
-            return Results.Problem(ex.Message);
-        }
-    }
-   
-    private static IResult DeleteTest(int id)
-    {
-        try
-        {
-            _users.Remove(_users.Single(x => x.Id == id));
+            await data.InsertUser(user);
             return Results.Ok();
         }
         catch (Exception ex)
@@ -90,4 +51,29 @@ public static class ApiTest
         }
     }
 
+    private static async Task<IResult> UpdateTest(UserModel user, IUserData data)
+    {
+        try
+        {
+            await data.UpdateUser(user);
+            return Results.Ok();
+        }
+        catch (Exception ex)
+        {
+            return Results.Problem(ex.Message);
+        }
+    }
+
+    private static async Task<IResult> DeleteTest(int id, IUserData data)
+    {
+        try
+        {
+            await data.DeleteUser(id);
+            return Results.Ok();
+        }
+        catch (Exception ex)
+        {
+            return Results.Problem(ex.Message);
+        }
+    }
 }
