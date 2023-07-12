@@ -39,7 +39,7 @@ public class MinimalApiTests : IDisposable
     [Fact]
     public async void GetTest()
     {
-        var response = await _client.GetAsync("/Api/GetTest/1");
+        var response = await _client.GetAsync("/Api/GetTest/3");
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
     }
 

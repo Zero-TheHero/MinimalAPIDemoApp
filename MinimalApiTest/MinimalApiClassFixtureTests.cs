@@ -33,7 +33,7 @@ public class MinimalApiClassFixtureTests : IClassFixture<WebApplicationFactory<P
     [Fact]
     public async void DeleteTest()
     {
-        _response = await _client.DeleteAsync("/Api/DeleteTest/2");
+        _response = await _client.DeleteAsync("/Api/DeleteTest/3");
         Assert.Equal(HttpStatusCode.OK, _response.StatusCode);
     }
 

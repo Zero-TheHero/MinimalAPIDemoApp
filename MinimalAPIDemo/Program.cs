@@ -6,18 +6,21 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<ISqlDataAccess, SqlDataAccess>();
-builder.Services.AddSingleton<IUserData, SqlUserData>();
-//builder.Services.AddSingleton<IUserData, InMemoryAccess>();
+
+if (builder.Environment.IsDevelopment())
+    builder.Services.AddSingleton<IUserData, InMemoryUserData>();
+else
+    builder.Services.AddSingleton<IUserData, SqlUserData>();
 
 var app = builder.Build();
-
 app.UseSwagger();
 app.UseSwaggerUI();
-
 app.UseHttpsRedirection();
 
-app.ConfigureApiUser();
-app.ConfigureApiTest();
+if (app.Environment.IsDevelopment())
+    app.ConfigureApiTest();
+else
+    app.ConfigureApiUser();
 
 app.Run();
 

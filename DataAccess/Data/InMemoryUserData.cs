@@ -1,11 +1,11 @@
 ﻿using DataAccess.Models;
 
 namespace DataAccess.Data;
-public class InMemoryAccess : IUserData
+public class InMemoryUserData : IUserData
 {
     private readonly List<UserModel> _users;
 
-    public InMemoryAccess()
+    public InMemoryUserData()
     {
         _users = new()
         {
