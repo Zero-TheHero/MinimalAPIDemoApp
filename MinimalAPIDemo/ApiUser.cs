@@ -8,7 +8,7 @@ public static class ApiUser
         app.MapGet("/Api/GetUser/{id}", GetUser);
         app.MapPost("/Api/InsertUser", InsertUser);
         app.MapPut("/Api/UpdateUser", UpdateUser);
-        app.MapDelete("/Api/DeletUser/{id}", DeleteUser);
+        app.MapDelete("/Api/DeleteUser/{id}", DeleteUser);
         app.Logger.LogInformation("Configure ApiUser Endpoints");
     }
 

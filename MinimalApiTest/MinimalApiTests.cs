@@ -31,40 +31,40 @@ public class MinimalApiTests : IDisposable
     }
     
     [Fact]
-    public async void GetTests()
+    public async void GetUsers()
     {
-        var response = await _client.GetAsync("/Api/GetTests");
+        var response = await _client.GetAsync("/Api/GetUsers");
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
     }
     [Fact]
-    public async void GetTest()
+    public async void GetUser()
     {
-        var response = await _client.GetAsync("/Api/GetTest/3");
-        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
-    }
-
-    [Fact]
-    public async void DeleteTest()
-    {
-        var response = await _client.DeleteAsync("/Api/DeleteTest/3");
+        var response = await _client.GetAsync("/Api/GetUser/3");
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
     }
 
     [Fact]
-    public async void InserTest()
+    public async void DeleteUser()
+    {
+        var response = await _client.DeleteAsync("/Api/DeleteUser/4");
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+    }
+
+    [Fact]
+    public async void InserUser()
     {
         var content = new StringContent(JsonConvert.SerializeObject(new { id = 5, firstname = "Peter", LastName = "Wong" }));
         content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-        var response = await _client.PostAsync("/Api/InsertTest", content);
+        var response = await _client.PostAsync("/Api/InsertUser", content);
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
     }
 
     [Fact]
-    public async void Updatetest()
+    public async void UpdateUser()
     {
         var content = new StringContent(JsonConvert.SerializeObject(new { id = 1, firstname = "Lisa", LastName = "Wong" }));
         content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-        var response = await _client.PutAsync("/Api/UpdateTest", content);
+        var response = await _client.PutAsync("/Api/UpdateUser", content);
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
     }
 }

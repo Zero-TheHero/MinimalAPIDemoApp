@@ -16,42 +16,42 @@ public class MinimalApiClassFixtureTests : IClassFixture<WebApplicationFactory<P
     }
 
     [Fact]
-    public async void GetTests()
+    public async void GetUsers()
     {
-        _response = await _client.GetAsync("/Api/GetTests");
+        _response = await _client.GetAsync("/Api/GetUsers");
         //var data = await response.Content.ReadAsStringAsync();
         Assert.Equal(HttpStatusCode.OK, _response.StatusCode);
      }
 
     [Fact]
-    public async void GetTest()
+    public async void GetUser()
     {
-        _response = await _client.GetAsync("/Api/GetTest/1");
+        _response = await _client.GetAsync("/Api/GetUser/1");
         Assert.Equal(HttpStatusCode.OK, _response.StatusCode);
     }
 
     [Fact]
-    public async void DeleteTest()
+    public async void DeleteUser()
     {
-        _response = await _client.DeleteAsync("/Api/DeleteTest/3");
+        _response = await _client.DeleteAsync("/Api/DeleteUser/4");
         Assert.Equal(HttpStatusCode.OK, _response.StatusCode);
     }
 
     [Fact]
-    public async void InserTest()
+    public async void InsertUser()
     {
         var content = new StringContent(JsonConvert.SerializeObject(new { id = 5, firstname = "Peter", LastName = "Wong" }));
         content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-        _response = await _client.PostAsync("/Api/InsertTest", content);
+        _response = await _client.PostAsync("/Api/InsertUser", content);
         Assert.Equal(HttpStatusCode.OK, _response.StatusCode);
     }
 
     [Fact]
-    public async void Updatetest()
+    public async void UpdateUser()
     {
         var content = new StringContent(JsonConvert.SerializeObject(new { id = 1, firstname = "Lisa", LastName = "Wong" }));
         content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-        _response = await _client.PutAsync("/Api/UpdateTest", content);
+        _response = await _client.PutAsync("/Api/UpdateUser", content);
         Assert.Equal(HttpStatusCode.OK, _response.StatusCode);
     }
 
