@@ -33,6 +33,8 @@ public class InMemoryUserData : IUserData
 
     public Task InsertUser(UserModel user)
     {
+        var maxId = _users.Max(x => x.Id) + 1;
+        user.Id = maxId;
         _users.Add(user);
         return Task.CompletedTask;  
     }
