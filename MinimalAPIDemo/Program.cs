@@ -5,12 +5,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddSingleton<ISqlDataAccess, SqlDataAccess>();
 
 if (builder.Environment.IsDevelopment())
     builder.Services.AddSingleton<IUserData, InMemoryUserData>();
 else
+{
+    builder.Services.AddSingleton<ISqlDataAccess, SqlDataAccess>();
     builder.Services.AddSingleton<IUserData, SqlUserData>();
+}
 
 var app = builder.Build();
 app.UseSwagger();
