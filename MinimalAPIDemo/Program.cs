@@ -17,10 +17,7 @@ app.UseSwagger();
 app.UseSwaggerUI();
 app.UseHttpsRedirection();
 
-if (app.Environment.IsDevelopment())
-    app.ConfigureApiTest();
-else
-    app.ConfigureApiUser();
+app.ConfigureApiUser();
 
 app.Run();
 
