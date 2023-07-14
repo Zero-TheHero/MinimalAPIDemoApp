@@ -14,12 +14,8 @@ public class SqlUserData : IUserData
 
     public async Task<IEnumerable<UserModel>> GetAllUsers() => await _db.LoadData<UserModel, dynamic>("dbo.spUser_GetAll", new { });
 
-    public async Task<IEnumerable<UserModel>> GetUsersByName(string name)
-    {
-        if (string.IsNullOrEmpty(name)) return await _db.LoadData<UserModel, dynamic>("dbo.spUser_GetAll", new { });
-        return await _db.LoadData<UserModel, dynamic>("dbo.spUser_GetUsersByName", new { Name = name});
-    }
-
+    public async Task<IEnumerable<UserModel>> GetUsersByName(string? name) => await _db.LoadData<UserModel, dynamic>("dbo.spUser_GetUsersByName", new { Name = name} );
+ 
     public async Task<UserModel?> GetUser(int id) => (await _db.LoadData<UserModel, dynamic>("dbo.spUser_Get", new { Id = id })).FirstOrDefault();
  
     public Task InsertUser(UserModel user) => _db.SaveData("dbo.spUser_Insert", new { user.FirstName, user.LastName });
