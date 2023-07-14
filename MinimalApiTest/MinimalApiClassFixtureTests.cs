@@ -16,12 +16,19 @@ public class MinimalApiClassFixtureTests : IClassFixture<WebApplicationFactory<P
     }
 
     [Fact]
-    public async void GetUsers()
+    public async void GetAllUsers()
     {
-        _response = await _client.GetAsync("/Api/GetUsers");
+        _response = await _client.GetAsync("/Api/GetAllUsers");
         //var data = await response.Content.ReadAsStringAsync();
         Assert.Equal(HttpStatusCode.OK, _response.StatusCode);
      }
+
+    [Fact]
+    public async void GetUsersByName()
+    {
+        var response = await _client.GetAsync("/Api/GetUsersByName/Storm");
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+    }
 
     [Fact]
     public async void GetUser()

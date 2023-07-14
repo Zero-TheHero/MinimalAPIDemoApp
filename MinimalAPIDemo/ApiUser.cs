@@ -4,7 +4,8 @@ public static class ApiUser
 {
     public static void ConfigureApiUser(this WebApplication app)
     {
-        app.MapGet("/Api/GetUsers", GetUsers);
+        app.MapGet("/Api/GetAllUsers", GetAllUsers);
+        app.MapGet("/Api/GetUsersByName/{name}", GetUsersByName);
         app.MapGet("/Api/GetUser/{id}", GetUser);
         app.MapPost("/Api/InsertUser", InsertUser);
         app.MapPut("/Api/UpdateUser", UpdateUser);
@@ -12,11 +13,25 @@ public static class ApiUser
         app.Logger.LogInformation("Configure ApiUser Endpoints");
     }
 
-    private static async Task<IResult> GetUsers(IUserData data)
+    private static async Task<IResult> GetAllUsers(IUserData data)
     {
         try
         {
-            return Results.Ok(await data.GetUsers());
+            return Results.Ok(await data.GetAllUsers());
+        }
+        catch (Exception ex)
+        {
+            return Results.Problem(ex.Message);
+        }
+    }
+
+    private static async Task<IResult> GetUsersByName(string name, IUserData data)
+    {
+        try
+        {
+            var results = await data.GetUsersByName(name);
+            if (results == null) return Results.NotFound();
+            return Results.Ok(results);
         }
         catch (Exception ex)
         {

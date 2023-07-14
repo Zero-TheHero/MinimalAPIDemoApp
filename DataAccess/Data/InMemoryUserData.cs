@@ -29,7 +29,15 @@ public class InMemoryUserData : IUserData
     }
 
 
-    public Task<IEnumerable<UserModel>> GetUsers() => Task.FromResult<IEnumerable<UserModel>>(_users);
+    public Task<IEnumerable<UserModel>> GetAllUsers() => Task.FromResult<IEnumerable<UserModel>>(_users);
+
+    public async Task<IEnumerable<UserModel>> GetUsersByName(string? name)
+    {
+        if (string.IsNullOrEmpty(name)) return await Task.FromResult(_users);
+
+        return _users.Where(x => (x.FirstName !=null && x.FirstName.Contains(name, StringComparison.OrdinalIgnoreCase)) ||
+                                 (x.LastName != null && x.LastName.Contains(name, StringComparison.OrdinalIgnoreCase)));
+    }
 
     public Task InsertUser(UserModel user)
     {
@@ -49,4 +57,6 @@ public class InMemoryUserData : IUserData
         }
         return Task.CompletedTask;
     }
+
+ 
 }

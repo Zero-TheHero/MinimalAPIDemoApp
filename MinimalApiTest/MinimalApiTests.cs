@@ -31,15 +31,22 @@ public class MinimalApiTests : IDisposable
     }
     
     [Fact]
-    public async void GetUsers()
+    public async void GetAllUsers()
     {
-        var response = await _client.GetAsync("/Api/GetUsers");
+        var response = await _client.GetAsync("/Api/GetAllUsers");
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
     }
     [Fact]
     public async void GetUser()
     {
         var response = await _client.GetAsync("/Api/GetUser/3");
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+    }
+
+    [Fact]
+    public async void GetUsersByName()
+    {
+        var response = await _client.GetAsync("/Api/GetUsersByName/Storm");
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
     }
 

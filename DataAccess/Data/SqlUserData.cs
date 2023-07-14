@@ -12,7 +12,12 @@ public class SqlUserData : IUserData
         _db = db;
     }
 
-    public async Task<IEnumerable<UserModel>> GetUsers() => await _db.LoadData<UserModel, dynamic>("dbo.spUser_GetAll", new { });
+    public async Task<IEnumerable<UserModel>> GetAllUsers() => await _db.LoadData<UserModel, dynamic>("dbo.spUser_GetAll", new { });
+
+    public Task<IEnumerable<UserModel>> GetUsersByName(string name)
+    {
+        throw new NotImplementedException();
+    }
 
     public async Task<UserModel?> GetUser(int id) => (await _db.LoadData<UserModel, dynamic>("dbo.spUser_Get", new { Id = id })).FirstOrDefault();
  
@@ -21,4 +26,6 @@ public class SqlUserData : IUserData
     public Task UpdateUser(UserModel user) => _db.SaveData("dbo.spUser_Update", user);
 
     public Task DeleteUser(int id) => _db.SaveData("dbo.spUser_Delete", new { Id = id });
+
+ 
 }
