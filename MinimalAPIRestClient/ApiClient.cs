@@ -29,7 +29,7 @@ public class ApiClient : IApiClient
 
     public List<UserModel>? GetUsers()
     {
-        var request = new RestRequest("Api/GetUser", Method.Get)
+        var request = new RestRequest("Api/GetUsers", Method.Get)
         {
             RequestFormat = DataFormat.Json
         };

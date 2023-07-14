@@ -10,8 +10,12 @@ if (builder.Environment.IsDevelopment())
     builder.Services.AddSingleton<IUserData, InMemoryUserData>();
 else
 {
-    builder.Services.AddSingleton<ISqlDataAccess, SqlDataAccess>();
-    builder.Services.AddSingleton<IUserData, SqlUserData>();
+    #if DEBUG
+        builder.Services.AddSingleton<IUserData, InMemoryUserData>();
+    #else
+        builder.Services.AddSingleton<ISqlDataAccess, SqlDataAccess>();
+        builder.Services.AddSingleton<IUserData, SqlUserData>();
+    #endif
 }
 
 var app = builder.Build();
