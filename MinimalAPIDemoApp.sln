@@ -21,7 +21,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{D230
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InMemoryRepository", "InMemoryRepository\InMemoryRepository.csproj", "{754A0A8B-34AB-4EB5-B597-AB23558535A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlRepository", "SqlUserRepository\SqlRepository.csproj", "{FFF7F041-9D79-4F77-BBDC-470D2A545FC4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlLiteRepository", "SqlUserRepository\SqlLiteRepository.csproj", "{FFF7F041-9D79-4F77-BBDC-470D2A545FC4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
