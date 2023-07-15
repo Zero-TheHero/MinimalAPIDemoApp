@@ -1,9 +1,42 @@
 ﻿@page "/"
 
-<PageTitle>Index</PageTitle>
+@using DataAccess.Data
+@using DataAccess.Models;
 
-<h1>Hello, world!</h1>
+@inject IUserData InMemoryUserData
 
-Welcome to your new app.
+<h3>Test Page</h3>
+<br />
 
-"How is Blazor working for you?"
+<table class="table">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var user in _users)
+		{
+			<tr>
+				<td>@user.Id</td>
+				<td>@user.FirstName</td>
+				<td>@user.LastName</td>
+				<td>
+					<button type="button" class="btn btn-light">Edit</button>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
+
+@code {
+	private List<UserModel> _users = new List<UserModel>();
+
+	protected override async Task OnInitializedAsync()
+	{
+		_users = (await InMemoryUserData.GetAllUsers()).ToList();
+	}
+}
