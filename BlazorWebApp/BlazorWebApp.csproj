@@ -9,7 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\DataAccess\Core.Business.csproj" />
     <ProjectReference Include="..\InMemoryRepository\InMemoryRepository.csproj" />
-    <ProjectReference Include="..\SqlUserRepository\SqlLiteRepository.csproj" />
+    <ProjectReference Include="..\SqlUserRepository\SqlRepository.csproj" />
   </ItemGroup>
 
 </Project>

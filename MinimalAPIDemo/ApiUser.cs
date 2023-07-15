@@ -1,7 +1,4 @@
-﻿using Core.Business.Models;
-using Core.Business.Repositories;
-
-namespace MinimalAPIDemo;
+﻿namespace MinimalAPIDemo;
 
 public static class ApiUser
 {
