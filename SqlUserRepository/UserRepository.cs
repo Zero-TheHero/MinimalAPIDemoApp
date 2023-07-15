@@ -1,14 +1,13 @@
-﻿using CoreBusiness.DbAccess;
-using CoreBusiness.Models;
-using CoreBusiness.Repositories;
+﻿using Core.Business.Repositories;
+using Core.Business.Models;
 
 namespace Plugins.SqlRepository;
 
 public class UserRepository : IUserRepository
 {
-    private readonly ISqlDataAccess _db;
+    private readonly ISqlRepository _db;
 
-    public UserRepository(ISqlDataAccess db) 
+    public UserRepository(ISqlRepository db) 
     { 
         _db = db;
     }

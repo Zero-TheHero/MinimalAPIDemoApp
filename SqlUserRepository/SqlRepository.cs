@@ -2,14 +2,15 @@
 using System.Data;
 using Microsoft.Extensions.Configuration;
 using System.Data.SqlClient;
+using Core.Business.Repositories;
 
-namespace CoreBusiness.DbAccess;
+namespace Plugins.SqlRepository;
 
-public class SqlDataAccess : ISqlDataAccess
+public class SqlRepository : ISqlRepository
 {
     private readonly IConfiguration _config;
 
-    public SqlDataAccess(IConfiguration config)
+    public SqlRepository(IConfiguration config)
     {
         _config = config;
     }

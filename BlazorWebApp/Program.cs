@@ -1,5 +1,4 @@
-using CoreBusiness.DbAccess;
-using CoreBusiness.Repositories;
+using Core.Business.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,8 +12,8 @@ else
     #if DEBUG
         builder.Services.AddSingleton<IUserRepository, Plugins.InMemoryRepository.UserRepository>();
     #else
-            builder.Services.AddSingleton<ISqlDataAccess, SqlDataAccess>();
-            builder.Services.AddSingleton<IUserRepository, Plugins.SqlRepository.UserRepository>();
+        builder.Services.AddSingleton<ISqlRepository, Plugins.SqlRepository.SqlRepository>();
+        builder.Services.AddSingleton<IUserRepository, Plugins.SqlRepository.UserRepository>();
     #endif
 }
 

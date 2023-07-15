@@ -1,6 +1,6 @@
-﻿using CoreBusiness.Models;
+﻿using Core.Business.Models;
 
-namespace CoreBusiness.Repositories;
+namespace Core.Business.Repositories;
 
 public interface IUserRepository
 {

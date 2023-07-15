@@ -1,5 +1,5 @@
-﻿using CoreBusiness.Models;
-using CoreBusiness.Repositories;
+﻿using Core.Business.Models;
+using Core.Business.Repositories;
 
 namespace Plugins.InMemoryRepository;
 public class UserRepository : IUserRepository

@@ -1,4 +1,4 @@
-﻿namespace CoreBusiness.Models;
+﻿namespace Core.Business.Models;
 
 public class UserModel
 {

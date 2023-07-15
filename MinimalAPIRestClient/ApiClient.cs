@@ -1,4 +1,4 @@
-﻿using CoreBusiness.Models;
+﻿using Core.Business.Models;
 using Newtonsoft.Json;
 using RestSharp;
 

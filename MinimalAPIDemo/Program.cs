@@ -1,5 +1,7 @@
-using CoreBusiness.Repositories;
+using Core.Business.Repositories;
 using MinimalAPIDemo;
+using Plugins.SqlRepository;
+using Plugins.InMemoryRepository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +15,7 @@ else
     #if DEBUG
         builder.Services.AddSingleton<IUserRepository, Plugins.InMemoryRepository.UserRepository>();
     #else
-        builder.Services.AddSingleton<ISqlDataAccess, SqlDataAccess>();
+        builder.Services.AddSingleton<ISqlRepository, SqlRepository>();
         builder.Services.AddSingleton<IUserRepository, Plugins.SqlRepository.UserRepository>();
     #endif
 }
