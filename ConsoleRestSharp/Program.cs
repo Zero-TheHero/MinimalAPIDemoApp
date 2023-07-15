@@ -1,5 +1,5 @@
 ﻿using MinimalAPIRestClient;
-using DataAccess.Models;
+using CoreBusiness.Models;
 
 var appClient = new ApiClient("https://localhost:5001");
 

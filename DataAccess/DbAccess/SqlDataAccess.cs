@@ -3,7 +3,7 @@ using System.Data;
 using Microsoft.Extensions.Configuration;
 using System.Data.SqlClient;
 
-namespace DataAccess.DbAccess;
+namespace CoreBusiness.DbAccess;
 
 public class SqlDataAccess : ISqlDataAccess
 {

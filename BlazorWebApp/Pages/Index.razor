@@ -1,9 +1,6 @@
 ﻿@page "/"
 
-@using DataAccess.Data
-@using DataAccess.Models;
-
-@inject IUserData InMemoryUserData
+@inject IUserRepository UserRepository
 
 <h3>Test Page</h3>
 <br />
@@ -37,6 +34,6 @@
 
 	protected override async Task OnInitializedAsync()
 	{
-		_users = (await InMemoryUserData.GetAllUsers()).ToList();
+		_users = (await UserRepository.GetAllUsers()).ToList();
 	}
 }

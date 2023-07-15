@@ -1,8 +1,8 @@
-﻿using DataAccess.Models;
+﻿using CoreBusiness.Models;
 
-namespace DataAccess.Data;
+namespace CoreBusiness.Repositories;
 
-public interface IUserData
+public interface IUserRepository
 {
     Task DeleteUser(int id);
     Task<UserModel?> GetUser(int id);

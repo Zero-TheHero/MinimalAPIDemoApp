@@ -1,11 +1,12 @@
-﻿using DataAccess.Models;
+﻿using CoreBusiness.Models;
+using CoreBusiness.Repositories;
 
-namespace DataAccess.Data;
-public class InMemoryUserData : IUserData
+namespace Plugins.InMemoryRepository;
+public class UserRepository : IUserRepository
 {
     private readonly List<UserModel> _users;
 
-    public InMemoryUserData()
+    public UserRepository()
     {
         _users = new()
         {

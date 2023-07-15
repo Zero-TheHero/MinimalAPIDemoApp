@@ -1,11 +1,22 @@
-using DataAccess.Data;
+using CoreBusiness.DbAccess;
+using CoreBusiness.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<IUserData, InMemoryUserData>();
+if (builder.Environment.IsDevelopment())
+    builder.Services.AddSingleton<IUserRepository, Plugins.InMemoryRepository.UserRepository>();
+else
+{
+    #if DEBUG
+        builder.Services.AddSingleton<IUserRepository, Plugins.InMemoryRepository.UserRepository>();
+    #else
+            builder.Services.AddSingleton<ISqlDataAccess, SqlDataAccess>();
+            builder.Services.AddSingleton<IUserRepository, Plugins.SqlRepository.UserRepository>();
+    #endif
+}
 
 var app = builder.Build();
 

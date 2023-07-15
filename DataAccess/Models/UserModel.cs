@@ -1,4 +1,4 @@
-﻿namespace DataAccess.Models;
+﻿namespace CoreBusiness.Models;
 
 public class UserModel
 {

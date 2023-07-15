@@ -1,4 +1,7 @@
-﻿namespace MinimalAPIDemo;
+﻿using CoreBusiness.Models;
+using CoreBusiness.Repositories;
+
+namespace MinimalAPIDemo;
 
 public static class ApiUser
 {
@@ -13,7 +16,7 @@ public static class ApiUser
         app.Logger.LogInformation("Configure ApiUser Endpoints");
     }
 
-    private static async Task<IResult> GetAllUsers(IUserData data)
+    private static async Task<IResult> GetAllUsers(IUserRepository data)
     {
         try
         {
@@ -25,7 +28,7 @@ public static class ApiUser
         }
     }
 
-    private static async Task<IResult> GetUsersByName(string name, IUserData data)
+    private static async Task<IResult> GetUsersByName(string name, IUserRepository data)
     {
         try
         {
@@ -39,7 +42,7 @@ public static class ApiUser
         }
     }
 
-    private static async Task<IResult> GetUser(int id, IUserData data)
+    private static async Task<IResult> GetUser(int id, IUserRepository data)
     {
         try
         {
@@ -53,7 +56,7 @@ public static class ApiUser
         }
     }
 
-    private static async Task<IResult> InsertUser(UserModel user, IUserData data)
+    private static async Task<IResult> InsertUser(UserModel user, IUserRepository data)
     {
         try
         {
@@ -66,7 +69,7 @@ public static class ApiUser
         }
     }
 
-    private static async Task<IResult> UpdateUser(UserModel user, IUserData data)
+    private static async Task<IResult> UpdateUser(UserModel user, IUserRepository data)
     {
         try
         {
@@ -79,7 +82,7 @@ public static class ApiUser
         }
     }
 
-    private static async Task<IResult> DeleteUser(int id, IUserData data)
+    private static async Task<IResult> DeleteUser(int id, IUserRepository data)
     {
         try
         {

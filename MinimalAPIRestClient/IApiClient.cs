@@ -1,4 +1,4 @@
-﻿using DataAccess.Models;
+﻿using CoreBusiness.Models;
 
 namespace MinimalAPIRestClient;
 public interface IApiClient

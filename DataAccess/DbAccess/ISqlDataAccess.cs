@@ -1,4 +1,4 @@
-﻿namespace DataAccess.DbAccess;
+﻿namespace CoreBusiness.DbAccess;
 
 public interface ISqlDataAccess
 {
