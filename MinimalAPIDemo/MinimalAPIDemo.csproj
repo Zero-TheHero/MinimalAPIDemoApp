@@ -11,9 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DataAccess\Core.Business.csproj" />
-    <ProjectReference Include="..\InMemoryRepository\InMemoryRepository.csproj" />
-    <ProjectReference Include="..\SqlUserRepository\SqlRepository.csproj" />
+    <ProjectReference Include="..\Core.Business\Core.Business.csproj" />
+    <ProjectReference Include="..\Plugins\InMemoryRepository\InMemoryRepository.csproj" />
+    <ProjectReference Include="..\Plugins\SqlRepository\SqlRepository.csproj" />
   </ItemGroup>
 
 </Project>
