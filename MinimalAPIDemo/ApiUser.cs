@@ -13,11 +13,11 @@ public static class ApiUser
         app.Logger.LogInformation("Configure ApiUser Endpoints");
     }
 
-    private static async Task<IResult> GetAllUsers(IUserRepository data)
+    private static async Task<IResult> GetAllUsers(IUserRepository userRepository)
     {
         try
         {
-            return Results.Ok(await data.GetAllUsers());
+            return Results.Ok(await userRepository.GetAllUsers());
         }
         catch (Exception ex)
         {
@@ -25,11 +25,11 @@ public static class ApiUser
         }
     }
 
-    private static async Task<IResult> GetUsersByName(string name, IUserRepository data)
+    private static async Task<IResult> GetUsersByName(string name, IUserRepository userRepository)
     {
         try
         {
-            var results = await data.GetUsersByName(name);
+            var results = await userRepository.GetUsersByName(name);
             if (results == null) return Results.NotFound();
             return Results.Ok(results);
         }
@@ -39,11 +39,11 @@ public static class ApiUser
         }
     }
 
-    private static async Task<IResult> GetUser(int id, IUserRepository data)
+    private static async Task<IResult> GetUser(int id, IUserRepository userRepository)
     {
         try
         {
-            var results = await data.GetUser(id);
+            var results = await userRepository.GetUser(id);
             if (results == null) return Results.NotFound();
             return Results.Ok(results);
         }
@@ -53,11 +53,11 @@ public static class ApiUser
         }
     }
 
-    private static async Task<IResult> InsertUser(UserModel user, IUserRepository data)
+    private static async Task<IResult> InsertUser(UserModel user, IUserRepository userRepository)
     {
         try
         {
-            await data.InsertUser(user);
+            await userRepository.InsertUser(user);
             return Results.Ok();
         }
         catch (Exception ex)
@@ -66,11 +66,11 @@ public static class ApiUser
         }
     }
 
-    private static async Task<IResult> UpdateUser(UserModel user, IUserRepository data)
+    private static async Task<IResult> UpdateUser(UserModel user, IUserRepository userRepository)
     {
         try
         {
-            await data.UpdateUser(user);
+            await userRepository.UpdateUser(user);
             return Results.Ok();
         }
         catch (Exception ex)
@@ -79,11 +79,11 @@ public static class ApiUser
         }
     }
 
-    private static async Task<IResult> DeleteUser(int id, IUserRepository data)
+    private static async Task<IResult> DeleteUser(int id, IUserRepository userRepository)
     {
         try
         {
-            await data.DeleteUser(id);
+            await userRepository.DeleteUser(id);
             return Results.Ok();
         }
         catch (Exception ex)
