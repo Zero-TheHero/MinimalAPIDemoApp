@@ -1,0 +1,31 @@
+﻿@inject NavigationManager NavigationManager
+
+<DataAnnotationsValidator></DataAnnotationsValidator>
+<ValidationSummary></ValidationSummary>
+
+<div class="form-group">
+	<label for="firstName">First Name</label>
+	<InputText id="firstName" @bind-Value="User.FirstName"
+			   class=" form-control">
+	</InputText>
+</div>
+
+<div class="form-group">
+	<label for="lastName">Last Name</label>
+	<InputText id="lastName" @bind-Value="User.LastName"
+			   class=" form-control">
+	</InputText>
+</div>
+
+<br />
+<button type="button" class="btn btn-primary" @onclick="Cancel">Cancel</button>
+
+@code {
+	[Parameter]
+	public UserModel User { get; set; } = new UserModel();
+
+	private void Cancel()
+	{
+		NavigationManager.NavigateTo("/");
+	}
+}

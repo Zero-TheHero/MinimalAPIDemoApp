@@ -6,40 +6,19 @@
 <h3>Add User</h3>
 <br />
 
-<EditForm Model="user" OnValidSubmit="SaveUser">
-	<DataAnnotationsValidator></DataAnnotationsValidator>
-	<ValidationSummary></ValidationSummary>
-
-	<div class="form-group">
-		<label for="firstName">First Name</label>
-		<InputText id="firstName" @bind-Value="user.FirstName"
-				   class=" form-control">
-		</InputText>
-	</div>
-
-	<div class="form-group">
-		<label for="lastName">Last Name</label>
-		<InputText id="lastName" @bind-Value="user.LastName"
-				   class=" form-control">
-		</InputText>
-	</div>
-
-	<br />
+<EditForm Model="_user" OnValidSubmit="SaveUser">
+	<UserFieldsComponent User="_user"></UserFieldsComponent>
 	<button type="submit" class="btn btn-primary">Save</button>
-	<button type="button" class="btn btn-primary" @onclick="Cancel">Cancel</button>
 </EditForm>
 
 @code {
-	private UserModel user = new UserModel();
+	private readonly UserModel _user = new UserModel();
 
 	private async Task SaveUser()
 	{
-		await UserRepository.InsertUser(user);
+		await UserRepository.InsertUser(_user);
 		NavigationManager.NavigateTo("/");
 	}
 
-	private void Cancel()
-	{
-		NavigationManager.NavigateTo("/");
-	}
+
 }
