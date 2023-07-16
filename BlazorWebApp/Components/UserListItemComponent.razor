@@ -15,8 +15,11 @@
 @code {
 	private List<UserModel> _users = new List<UserModel>();
 
+	[Parameter]
+	public string SearchTerm { get; set; } = string.Empty;
+
 	protected override async Task OnInitializedAsync()
 	{
-		_users = (await UserRepository.GetAllUsers()).ToList();
+		_users = (await UserRepository.GetUsersByName(SearchTerm)).ToList();
 	}
 }
