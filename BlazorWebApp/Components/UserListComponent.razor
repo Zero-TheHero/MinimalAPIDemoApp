@@ -1,4 +1,6 @@
-﻿<table class="table">
+﻿@inject IUserRepository UserRepository
+
+<table class="table">
 	<thead>
 		<tr>
 			<th>Id</th>
@@ -8,7 +10,17 @@
 		</tr>
 	</thead>
 	<tbody>
-		<UserListItemComponent></UserListItemComponent>
+		<UserListItemComponent Users ="_users"></UserListItemComponent>
 	</tbody>
 </table>
+@code {
+	private List<UserModel> _users { get; set; } = new List<UserModel>();
 
+	[Parameter]
+	public string SearchTerm { get; set; } = string.Empty;
+
+	protected override async Task OnParametersSetAsync()
+	{
+		_users = (await UserRepository.GetUsersByName(SearchTerm)).ToList();
+	}
+}

@@ -3,5 +3,18 @@
 <h3>User List</h3>
 <br />
 
-<UserSearchComponent></UserSearchComponent>
-<UserListComponent></UserListComponent>
+<UserSearchComponent OnSearchUser="OnInventorySearch"></UserSearchComponent>
+<UserListComponent SearchTerm="@_searchTerm"></UserListComponent>
+
+@code {
+	private string _searchTerm = string.Empty;
+
+	private void OnInventorySearch(string searchTerm)
+	{
+		_searchTerm = searchTerm;
+	}
+
+	private void AddInventory()
+	{
+	}
+}
