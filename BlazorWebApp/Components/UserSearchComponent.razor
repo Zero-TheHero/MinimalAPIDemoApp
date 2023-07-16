@@ -1,0 +1,24 @@
+﻿
+<div class="input-group">
+	<input type="text"
+		   class="form-control"
+		   placeholder="Type user name to search"
+	@bind-value="_userNameToSearch" />
+	<button type="button"
+			class="btn-success input-group-text"
+	@onclick="OnSearch">
+		Search
+	</button>
+</div>
+
+@code {
+	private string _userNameToSearch = string.Empty;
+
+	[Parameter]
+	public EventCallback<string> OnSearchUser { get; set; }
+
+	private void OnSearch()
+	{
+		OnSearchUser.InvokeAsync(_userNameToSearch);
+	}
+}
