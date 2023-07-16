@@ -23,9 +23,9 @@ public class UserRepository : IUserRepository
         return Task.CompletedTask;
     }
 
-    public Task<UserModel?> GetUser(int id)
+    public Task<UserModel> GetUser(int id)
     {
-        var result = _users.FirstOrDefault(x => x.Id == id);
+        var result = _users.First(x => x.Id == id);
         return Task.FromResult(result);
     }
 

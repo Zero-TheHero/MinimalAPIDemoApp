@@ -16,7 +16,7 @@ public class UserRepository : IUserRepository
 
     public async Task<IEnumerable<UserModel>> GetUsersByName(string? name) => await _db.LoadData<UserModel, dynamic>("dbo.spUser_GetUsersByName", new { Name = name} );
  
-    public async Task<UserModel?> GetUser(int id) => (await _db.LoadData<UserModel, dynamic>("dbo.spUser_Get", new { Id = id })).FirstOrDefault();
+    public async Task<UserModel> GetUser(int id) => (await _db.LoadData<UserModel, dynamic>("dbo.spUser_Get", new { Id = id })).Single();
  
     public Task InsertUser(UserModel user) => _db.SaveData("dbo.spUser_Insert", new { user.FirstName, user.LastName });
 
