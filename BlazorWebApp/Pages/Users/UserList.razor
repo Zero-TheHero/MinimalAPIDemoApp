@@ -1,25 +1,28 @@
 ﻿@page "/"
 
+@inject NavigationManager NavigationManager
+
 <h3>User List</h3>
 <br />
-<UserSearchComponent OnSearchUser="OnInventorySearch"></UserSearchComponent>
+<UserSearchComponent OnSearchUser="OnUserSearch"></UserSearchComponent>
 <UserListComponent SearchTerm="@_searchTerm"></UserListComponent>
 <br />
 <button type="button"
 		class="btn btn-primary"
-		@onclick="AddInventory">
-		Add Inventory
+		@onclick="AddUser">
+		Add User
 </button>
 
 @code {
 	private string _searchTerm = string.Empty;
 
-	private void OnInventorySearch(string searchTerm)
+	private void OnUserSearch(string searchTerm)
 	{
 		_searchTerm = searchTerm;
 	}
 
-	private void AddInventory()
+	private void AddUser()
 	{
+		NavigationManager.NavigateTo("/AddUser");
 	}
 }
