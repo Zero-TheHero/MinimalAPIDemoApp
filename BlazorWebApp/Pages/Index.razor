@@ -2,9 +2,14 @@
 
 <h3>User List</h3>
 <br />
-
 <UserSearchComponent OnSearchUser="OnInventorySearch"></UserSearchComponent>
 <UserListComponent SearchTerm="@_searchTerm"></UserListComponent>
+<br />
+<button type="button"
+		class="btn btn-primary"
+		@onclick="AddInventory">
+		Add Inventory
+</button>
 
 @code {
 	private string _searchTerm = string.Empty;
