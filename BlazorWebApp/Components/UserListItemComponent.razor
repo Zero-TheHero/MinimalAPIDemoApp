@@ -1,0 +1,22 @@
+﻿@inject IUserRepository UserRepository
+
+@foreach (var user in _users)
+{
+	<tr>
+		<td>@user.Id</td>
+		<td>@user.FirstName</td>
+		<td>@user.LastName</td>
+		<td>
+			<button type="button" class="btn btn-light">Edit</button>
+		</td>
+	</tr>
+}
+
+@code {
+	private List<UserModel> _users = new List<UserModel>();
+
+	protected override async Task OnInitializedAsync()
+	{
+		_users = (await UserRepository.GetAllUsers()).ToList();
+	}
+}
